@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="tom" class="com.example.spring.learn.demo.model.Student">
+        <property name="name" value="tom"></property>
+        <property name="classRoom" ref="room1"></property>
+        <property name="school" ref="schoolBean"></property>
+    </bean>
+
+    <bean id="jack" class="com.example.spring.learn.demo.model.Student">
+        <property name="name" value="jack"></property>
+        <property name="classRoom" ref="room1"></property>
+        <property name="school" ref="schoolBean"></property>
+    </bean>
+
+    <bean id="kaidi" class="com.example.spring.learn.demo.model.Student">
+        <property name="name" value="kaidi"></property>
+        <property name="classRoom" ref="room1"></property>
+        <property name="school" ref="schoolBean"></property>
+        <replaced-method name="testReplaceMethod" replacer="replacerDemo"></replaced-method>
+    </bean>
+
+    <bean id="replacerDemo" class="com.example.spring.learn.demo.model.MethodReplacerDemo">
+    </bean>
+
+    <bean id="dan" class="com.example.spring.learn.demo.model.Student">
+        <property name="name" value="dan"></property>
+        <property name="classRoom" ref="room1"></property>
+        <property name="school" ref="schoolBean"></property>
+    </bean>
+
+    <bean id="room1" class="com.example.spring.learn.demo.model.ClassRoom">
+        <property name="name" value="room1"></property>
+        <property name="studentList">
+            <list>
+                <ref bean="kaidi"></ref>
+                <ref bean="tom"></ref>
+                <ref bean="jack"></ref>
+                <ref bean="dan"></ref>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="schoolBean" class="com.example.spring.learn.demo.model.School">
+        <property name="name" value="the first middle school of Shanghai"></property>
+        <property name="classRoomList">
+            <list>
+                <ref bean="room1"></ref>
+            </list>
+        </property>
+    </bean>
+</beans>
